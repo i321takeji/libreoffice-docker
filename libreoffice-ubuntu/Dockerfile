@@ -1,8 +1,7 @@
 FROM ubuntu:16.04
 
 RUN sed -i.bak -e "s%http://.*.ubuntu.com/ubuntu/%http://ftp.jaist.ac.jp/pub/Linux/ubuntu/%g" /etc/apt/sources.list \
-&& apt-get update && apt-get install -y \
-#--no-install-recommends \
+&& apt-get update && apt-get install -y --no-install-recommends \
   dbus-x11 \
 # fcitx-imlist \
   fcitx-mozc \
