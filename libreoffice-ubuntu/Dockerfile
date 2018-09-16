@@ -8,9 +8,17 @@ RUN sed -i.bak -e "s%http://.*.ubuntu.com/ubuntu/%http://ftp.jaist.ac.jp/pub/Lin
   fonts-takao \
   language-pack-ja-base \
   language-pack-ja tzdata \
+  wget \
+  xz-utils \
 && ln -s -f /usr/share/zoneinfo/Asia/Tokyo /etc/localtime \
 && dpkg-reconfigure -f noninteractive tzdata \
 && locale-gen ja_JP.UTF-8 \
+&& mkdir -p /usr/share/fonts/truetype/mplusipa \
+&& wget -O - http://osdn.net/dl/mplus-fonts/mplus-TESTFLIGHT-063.tar.xz | tar Jxf - --strip-components 1 -C /usr/share/fonts/truetype/mplusipa/ --wildcards *.ttf \
+&& fc-cache -fv \
+&& apt-get purge -y \
+  wget \
+  xz-utils \
 && apt-get clean \
 && rm -rf /var/cache/apt/archives/* /var/lib/apt/lists/*
 
