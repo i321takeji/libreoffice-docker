@@ -19,4 +19,4 @@ bash -c "fcitx-autostart &&
          docker run --rm -i -t --net host -e DISPLAY=$DISPLAY \
                                           -v $HOME/.Xauthority:/root/.Xauthority:rw \
                                           ${WORK_VOLUME} \
-                                          libreoffice:ubuntu-16.04 $@"
+                                          libreoffice:ubuntu-16.04 libreoffice"
