@@ -16,7 +16,7 @@ if [ -n "${WORK_DIR}" ]; then
 fi
 
 bash -c "fcitx-autostart &&
-         docker run --rm -i -t --net host -e DISPLAY=$DISPLAY \
+         docker run --rm -i -t -d --net host -e DISPLAY=$DISPLAY \
                                           -v $HOME/.Xauthority:/root/.Xauthority:rw \
                                           ${WORK_VOLUME} \
                                           libreoffice:ubuntu-16.04 libreoffice"
