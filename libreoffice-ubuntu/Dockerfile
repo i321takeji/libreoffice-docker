@@ -5,7 +5,9 @@ RUN sed -i.bak -e "s%http://.*.ubuntu.com/ubuntu/%http://ftp.jaist.ac.jp/pub/Lin
   dbus-x11 \
 # fcitx-imlist \
   fcitx-mozc \
-  fonts-takao \
+  fonts-ipafont \
+  fonts-ipaexfont \
+# fonts-takao \
   language-pack-ja-base \
   language-pack-ja tzdata \
   mozc-utils-gui \
