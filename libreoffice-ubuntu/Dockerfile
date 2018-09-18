@@ -1,13 +1,14 @@
-FROM ubuntu:16.04
+FROM ubuntu:18.04
 
 RUN sed -i.bak -e "s%http://.*.ubuntu.com/ubuntu/%http://ftp.jaist.ac.jp/pub/Linux/ubuntu/%g" /etc/apt/sources.list \
-&& apt-get update && apt-get install -y --no-install-recommends \
+&& apt-get update && apt-get install -y \
   dbus-x11 \
 # fcitx-imlist \
   fcitx-mozc \
   fonts-takao \
   language-pack-ja-base \
   language-pack-ja tzdata \
+  mozc-utils-gui \
   wget \
   xz-utils \
 && ln -s -f /usr/share/zoneinfo/Asia/Tokyo /etc/localtime \
@@ -32,12 +33,12 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
   libreoffice \
   libreoffice-l10n-ja \
   openjdk-8-jre \
-# clean up
 && apt-get clean \
 && rm -rf /var/cache/apt/archives/* /var/lib/apt/lists/*
 
-COPY entrypoint.sh /usr/local/bin
-RUN chmod +x /usr/local/bin/entrypoint.sh
+COPY res/entrypoint.sh /usr/local/bin
+COPY res/runLibreOffice.sh /usr/local/bin
+RUN chmod +x /usr/local/bin/entrypoint.sh /usr/local/bin/runLibreOffice.sh
 
 WORKDIR work-dir
 

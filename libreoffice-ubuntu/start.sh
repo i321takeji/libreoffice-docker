@@ -2,6 +2,10 @@
 
 set -e
 
+IMAGE="libreoffice:ubuntu-18.04"
+USER="`whoami`"
+UID="`id -u ${USER}`"
+
 WORK_DIR="$1"
 WORK_VOLUME=""
 
@@ -15,8 +19,7 @@ if [ -n "${WORK_DIR}" ]; then
   fi
 fi
 
-bash -c "fcitx-autostart &&
-         docker run --rm -i -t -d --net host -e DISPLAY=$DISPLAY \
-                                          -v $HOME/.Xauthority:/root/.Xauthority:rw \
-                                          ${WORK_VOLUME} \
-                                          libreoffice:ubuntu-16.04 libreoffice"
+bash -c "docker run --rm -i -t -d --net host -e DISPLAY=${DISPLAY} \
+                    -v ${HOME}/.Xauthority:/xfiles/.Xauthority:rw \
+                    ${WORK_VOLUME} \
+                    ${IMAGE} ${USER} ${UID}"
