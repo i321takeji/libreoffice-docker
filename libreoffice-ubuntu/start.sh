@@ -3,8 +3,6 @@
 set -e
 
 IMAGE="libreoffice:ubuntu-18.04"
-USER="`whoami`"
-UID="`id -u ${USER}`"
 
 WORK_DIR="$1"
 WORK_VOLUME=""
