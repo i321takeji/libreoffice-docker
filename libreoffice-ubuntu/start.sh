@@ -18,6 +18,7 @@ if [ -n "${WORK_DIR}" ]; then
 fi
 
 bash -c "docker run --rm -i -t -d --net host -e DISPLAY=${DISPLAY} \
+                    --name libreoffice_container \
                     -v ${HOME}/.Xauthority:/xfiles/.Xauthority:rw \
                     ${WORK_VOLUME} \
                     ${IMAGE} ${USER} ${UID}"
