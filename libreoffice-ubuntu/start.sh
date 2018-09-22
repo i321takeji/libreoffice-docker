@@ -2,7 +2,7 @@
 
 set -e
 
-IMAGE="libreoffice:ubuntu-18.04"
+IMAGE="bamboog130/libreoffice-docker"
 
 WORK_DIR="$1"
 WORK_VOLUME=""
