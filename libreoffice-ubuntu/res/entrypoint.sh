@@ -2,13 +2,15 @@
 
 set -e
 
-LIBRE_USER="$1"
-LIBRE_UID="$2"
+USERNAME="${LIBRE_USER}"
+USERID="${LIBRE_UID}"
+GROUPID="${LIBRE_GID}"
 
-if [ -z "${LIBRE_USER}" ] || [ -z "${LIBRE_UID}" ]; then
+if [ -z "${USERNAME}" ] || [ -z "${USERID}" ] || [ -z "${GROUPID}" ]; then
   bash
 else
-  useradd "${LIBRE_USER}" -u "${LIBRE_UID}" -m -d "/home/${LIBRE_USER}" -s /bin/bash
-  ln -s /xfiles/.Xauthority "/home/${LIBRE_USER}"
-  su - "${LIBRE_USER}" -c /usr/local/bin/runLibreOffice.sh
+  groupadd "${USERNAME}" -g "${GROUPID}"
+  useradd "${USERNAME}" -u "${USERID}" -g "${GROUPID}" -m -d "/home/${USERNAME}" -s /bin/bash
+  ln -s /xfiles/.Xauthority "/home/${USERNAME}"
+  su - "${USERNAME}" -c /usr/local/bin/runLibreOffice.sh
 fi

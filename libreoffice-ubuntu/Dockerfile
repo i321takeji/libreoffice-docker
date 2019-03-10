@@ -42,7 +42,11 @@ COPY res/entrypoint.sh /usr/local/bin
 COPY res/runLibreOffice.sh /usr/local/bin
 RUN chmod +x /usr/local/bin/entrypoint.sh /usr/local/bin/runLibreOffice.sh
 
-WORKDIR work-dir
+ENV LIBRE_USER libre
+ENV LIBRE_UID 99999
+ENV LIBRE_GID 99999
+
+WORKDIR /libreoffice-work
 
 ENTRYPOINT ["entrypoint.sh"]
 CMD ["libreoffice"]
